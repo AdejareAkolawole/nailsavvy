@@ -10,6 +10,7 @@ import {
   SparklesIcon,
   Home01Icon,
   ArrowRight01Icon,
+  CheckmarkCircle01Icon,
 } from "@hugeicons/core-free-icons";
 
 const services = [
@@ -22,64 +23,60 @@ const services = [
 ];
 
 export default function BookingSection() {
-  const [form, setForm] = useState({
-    name: "",
-    phone: "",
-    service: "",
-    date: "",
-    notes: "",
-    homeService: false,
-  });
+  const [form, setForm] = useState({ name: "", phone: "", service: "", date: "", notes: "", homeService: false });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
-    }));
+    setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value }));
   };
 
-  const whatsappMessage = () => {
-    const msg = `Hi NailSavvy! I'd like to book:\n\n👤 Name: ${form.name}\n📱 Phone: ${form.phone}\n💅 Service: ${form.service}\n📅 Date: ${form.date}\n🏠 Home Service: ${form.homeService ? "Yes" : "No"}\n📝 Notes: ${form.notes || "None"}`;
+  const waLink = () => {
+    const msg = `Hi NailSavvy! I'd like to book:\n\n👤 ${form.name}\n📱 ${form.phone}\n💅 ${form.service}\n📅 ${form.date}\n🏠 Home service: ${form.homeService ? "Yes" : "No"}\n📝 ${form.notes || "No notes"}`;
     return `https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(msg)}`;
   };
 
-  const fieldClass = "w-full bg-white/4 border border-white/10 text-white placeholder-white/20 px-5 py-4 text-sm focus:outline-none focus:border-[#ff6c78] transition-colors";
+  const inputClass = "w-full bg-zinc-900 border border-zinc-800 text-white placeholder-zinc-600 px-4 py-3.5 text-sm rounded-xl focus:outline-none focus:border-[#ff6c78] transition-colors";
 
   return (
-    <section id="book" className="bg-black text-white py-28">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="book" className="bg-white py-28 px-6">
+      <div className="max-w-6xl mx-auto">
 
         <div className="grid lg:grid-cols-2 gap-20 items-start">
 
-          {/* Left — copy */}
-          <div className="lg:sticky lg:top-24">
-            <div className="flex items-center gap-2 mb-5">
-              <HugeiconsIcon icon={SparklesIcon} size={16} color="#ff6c78" />
-              <span className="text-[#ff6c78] text-xs tracking-[0.3em] uppercase font-medium">Ready to Glow?</span>
+          {/* Left */}
+          <div>
+            <div className="flex items-center gap-2 mb-4">
+              <HugeiconsIcon icon={SparklesIcon} size={14} color="#ff6c78" />
+              <p className="text-[#ff6c78] text-sm font-bold uppercase tracking-widest">Book an Appointment</p>
             </div>
-            <h2 className="font-script text-5xl md:text-6xl font-light leading-tight mb-6">
-              Book Your<br />
-              <span className="text-[#ff6c78] italic">Appointment</span>
+            <h2 className="text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold text-[#09090b] leading-tight tracking-tight mb-5">
+              Ready for your<br />
+              <span className="relative inline-block">
+                <span className="relative z-10">dream nails?</span>
+                <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 280 10" fill="none" preserveAspectRatio="none">
+                  <path d="M2 7C60 2 150 2 278 8" stroke="#ff6c78" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
+                </svg>
+              </span>
             </h2>
-            <p className="text-white/40 text-sm leading-relaxed mb-12 max-w-xs">
-              Fill in your details and we&apos;ll confirm your booking on WhatsApp in minutes.
+            <p className="text-zinc-500 text-base leading-relaxed mb-12 max-w-xs">
+              Fill in the form and we&apos;ll confirm your booking on WhatsApp in minutes.
             </p>
 
             {/* Trust signals */}
-            <div className="space-y-5 border-t border-white/8 pt-10">
+            <div className="space-y-5">
               {[
-                { icon: WhatsappIcon, title: "WhatsApp Confirmation", desc: "Booking confirmed instantly via WhatsApp" },
-                { icon: Calendar01Icon, title: "Flexible Scheduling", desc: "Pick a date and time that works for you" },
-                { icon: Home01Icon, title: "In-Studio or Home", desc: "Choose where you want your service done" },
-              ].map((item) => (
-                <div key={item.title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 border border-white/10 flex items-center justify-center flex-shrink-0">
-                    <HugeiconsIcon icon={item.icon} size={18} color="#ff6c78" />
+                { icon: WhatsappIcon, title: "WhatsApp Confirmation", desc: "Booking confirmed instantly — no waiting." },
+                { icon: Calendar01Icon, title: "Flexible Scheduling", desc: "Pick a date and time that works for you." },
+                { icon: Home01Icon, title: "In-Studio or Home", desc: "Your choice — we adapt to you." },
+                { icon: CheckmarkCircle01Icon, title: "7-Day Warranty", desc: "Every service backed by our nail guarantee." },
+              ].map((t) => (
+                <div key={t.title} className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-[#fff0f1] border border-[#ff6c78]/10 flex items-center justify-center flex-shrink-0">
+                    <HugeiconsIcon icon={t.icon} size={18} color="#ff6c78" />
                   </div>
                   <div>
-                    <div className="text-white text-sm font-medium mb-0.5">{item.title}</div>
-                    <div className="text-white/30 text-xs">{item.desc}</div>
+                    <div className="text-[#09090b] font-semibold text-sm">{t.title}</div>
+                    <div className="text-zinc-400 text-xs mt-0.5">{t.desc}</div>
                   </div>
                 </div>
               ))}
@@ -87,104 +84,72 @@ export default function BookingSection() {
           </div>
 
           {/* Right — form */}
-          <div className="border border-white/8 p-8 lg:p-10">
+          <div className="bg-[#09090b] rounded-2xl p-8 lg:p-10 border border-zinc-800">
+            <h3 className="text-white font-bold text-xl mb-8">Your Details</h3>
+
             <div className="grid grid-cols-2 gap-4 mb-4">
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <HugeiconsIcon icon={UserCheck01Icon} size={16} color="rgba(255,255,255,0.2)" />
+                  <HugeiconsIcon icon={UserCheck01Icon} size={15} color="#52525b" />
                 </div>
-                <input
-                  name="name"
-                  placeholder="Your Name"
-                  value={form.name}
-                  onChange={handleChange}
-                  className={`${fieldClass} pl-11`}
-                />
+                <input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} className={`${inputClass} pl-11`} />
               </div>
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <HugeiconsIcon icon={Call02Icon} size={16} color="rgba(255,255,255,0.2)" />
+                  <HugeiconsIcon icon={Call02Icon} size={15} color="#52525b" />
                 </div>
-                <input
-                  name="phone"
-                  placeholder="WhatsApp Number"
-                  value={form.phone}
-                  onChange={handleChange}
-                  className={`${fieldClass} pl-11`}
-                />
+                <input name="phone" placeholder="WhatsApp No." value={form.phone} onChange={handleChange} className={`${inputClass} pl-11`} />
               </div>
             </div>
 
             <div className="relative mb-4">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                <HugeiconsIcon icon={SparklesIcon} size={16} color="rgba(255,255,255,0.2)" />
+                <HugeiconsIcon icon={SparklesIcon} size={15} color="#52525b" />
               </div>
-              <select
-                name="service"
-                value={form.service}
-                onChange={handleChange}
-                className={`${fieldClass} pl-11 appearance-none`}
-              >
-                <option value="" disabled className="bg-black">Select a Service</option>
-                {services.map((s) => <option key={s} value={s} className="bg-black">{s}</option>)}
+              <select name="service" value={form.service} onChange={handleChange} className={`${inputClass} pl-11 appearance-none`}>
+                <option value="" disabled className="bg-[#09090b]">Select a Service</option>
+                {services.map((s) => <option key={s} value={s} className="bg-[#09090b]">{s}</option>)}
               </select>
             </div>
 
             <div className="relative mb-4">
               <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                <HugeiconsIcon icon={Calendar01Icon} size={16} color="rgba(255,255,255,0.2)" />
+                <HugeiconsIcon icon={Calendar01Icon} size={15} color="#52525b" />
               </div>
-              <input
-                type="date"
-                name="date"
-                value={form.date}
-                onChange={handleChange}
-                className={`${fieldClass} pl-11`}
-              />
+              <input type="date" name="date" value={form.date} onChange={handleChange} className={`${inputClass} pl-11`} />
             </div>
 
             <textarea
               name="notes"
-              placeholder="Any special requests, nail inspo, or reference photos to describe..."
+              placeholder="Special requests, nail inspo description, reference photos..."
               value={form.notes}
               onChange={handleChange}
-              rows={4}
-              className={`${fieldClass} mb-4 resize-none`}
+              rows={3}
+              className={`${inputClass} resize-none mb-4`}
             />
 
             <label className="flex items-center gap-3 cursor-pointer mb-8 group">
-              <div className="relative">
-                <input
-                  type="checkbox"
-                  name="homeService"
-                  checked={form.homeService}
-                  onChange={handleChange}
-                  className="sr-only"
-                />
-                <div className={`w-5 h-5 border flex items-center justify-center transition-colors ${form.homeService ? "bg-[#ff6c78] border-[#ff6c78]" : "border-white/20 group-hover:border-[#ff6c78]"}`}>
-                  {form.homeService && <span className="text-white text-xs">✓</span>}
-                </div>
+              <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${form.homeService ? "bg-[#ff6c78] border-[#ff6c78]" : "border-zinc-700 group-hover:border-[#ff6c78]"}`}>
+                {form.homeService && <span className="text-white text-xs font-bold">✓</span>}
               </div>
+              <input type="checkbox" name="homeService" checked={form.homeService} onChange={handleChange} className="sr-only" />
               <div className="flex items-center gap-2">
-                <HugeiconsIcon icon={Home01Icon} size={15} color="rgba(255,255,255,0.4)" />
-                <span className="text-white/50 text-sm">I want home service</span>
+                <HugeiconsIcon icon={Home01Icon} size={15} color="#71717a" />
+                <span className="text-zinc-400 text-sm">I want home service</span>
               </div>
             </label>
 
             <a
-              href={whatsappMessage()}
+              href={waLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 w-full bg-[#ff6c78] text-white py-5 text-sm tracking-widest uppercase font-medium hover:bg-[#e85d68] transition-colors"
+              className="flex items-center justify-center gap-3 w-full bg-[#ff6c78] text-white font-bold py-4 text-sm rounded-xl hover:bg-[#e85d68] transition-colors shadow-lg shadow-[#ff6c78]/30"
             >
               <HugeiconsIcon icon={WhatsappIcon} size={20} color="white" />
               Confirm on WhatsApp
               <HugeiconsIcon icon={ArrowRight01Icon} size={16} color="white" />
             </a>
-
-            <p className="text-white/20 text-xs text-center mt-4">
-              Clicking will open WhatsApp with your details pre-filled
-            </p>
+            <p className="text-zinc-600 text-xs text-center mt-4">Opens WhatsApp with your details pre-filled</p>
           </div>
         </div>
       </div>

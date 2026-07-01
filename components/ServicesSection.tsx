@@ -1,12 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
   SparklesIcon,
   ArrowRight01Icon,
-  PlayIcon,
-  TiktokIcon,
+  Home01Icon,
 } from "@hugeicons/core-free-icons";
 
 const services = [
@@ -16,9 +14,7 @@ const services = [
     price: "From ₦15,000",
     duration: "1h 30min",
     tag: "Most Popular",
-    tagColor: "bg-[#ff6c78]",
-    description: "Long-lasting gel polish that stays chip-free for up to 3 weeks. Choose from 200+ shades.",
-    gradient: "from-[#fdd4d5] to-[#fbaaab]",
+    description: "Long-lasting gel polish, chip-free for up to 3 weeks. 200+ shades available.",
   },
   {
     id: 2,
@@ -26,9 +22,7 @@ const services = [
     price: "From ₦25,000",
     duration: "2h",
     tag: "Trending",
-    tagColor: "bg-black",
-    description: "Custom length acrylic extensions shaped and finished to absolute perfection.",
-    gradient: "from-[#ffe4e6] to-[#fecdd3]",
+    description: "Custom-length acrylics shaped and finished to absolute perfection.",
   },
   {
     id: 3,
@@ -36,9 +30,7 @@ const services = [
     price: "From ₦5,000",
     duration: "30–60min",
     tag: null,
-    tagColor: "",
-    description: "Bespoke nail art — from minimalist line work to full 3D statement designs.",
-    gradient: "from-[#fdf2f8] to-[#fce7f3]",
+    description: "Minimalist line work to full 3D statement nails — bespoke to you.",
   },
   {
     id: 4,
@@ -46,9 +38,7 @@ const services = [
     price: "From ₦12,000",
     duration: "1h",
     tag: null,
-    tagColor: "",
-    description: "Full foot care — soak, scrub, exfoliation, massage, and your choice of polish.",
-    gradient: "from-[#fff1f2] to-[#ffe4e6]",
+    description: "Full foot care — soak, scrub, exfoliation, massage, and polish.",
   },
   {
     id: 5,
@@ -56,9 +46,7 @@ const services = [
     price: "From ₦8,000",
     duration: "45min",
     tag: null,
-    tagColor: "",
-    description: "Cuticle care, precise shaping, and a flawless polish finish every time.",
-    gradient: "from-[#fdf4ff] to-[#fae8ff]",
+    description: "Cuticle care, precise shaping, and a flawless polish finish.",
   },
   {
     id: 6,
@@ -66,112 +54,79 @@ const services = [
     price: "Zone fee + service",
     duration: "We come to you",
     tag: "New",
-    tagColor: "bg-[#ff6c78]",
-    description: "All our services at your doorstep. Instant booking, immediate confirmation via WhatsApp.",
-    gradient: "from-[#fff7ed] to-[#ffedd5]",
+    description: "All services delivered at your door. Instant booking, WhatsApp confirm.",
+    isHome: true,
   },
 ];
 
 export default function ServicesSection() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
-    <section id="services" className="py-28 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <section id="services" className="bg-[#09090b] py-28 px-6">
+      <div className="max-w-6xl mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <HugeiconsIcon icon={SparklesIcon} size={16} color="#ff6c78" />
-              <span className="text-[#ff6c78] text-xs tracking-[0.3em] uppercase font-medium">What We Offer</span>
-            </div>
-            <h2 className="font-script text-5xl md:text-6xl font-light text-black leading-tight">
-              Services Built<br />
-              <span className="italic">for Every Mood</span>
-            </h2>
+        <div className="max-w-2xl mb-20">
+          <div className="flex items-center gap-2 mb-4">
+            <HugeiconsIcon icon={SparklesIcon} size={14} color="#ff6c78" />
+            <p className="text-[#ff6c78] text-sm font-bold uppercase tracking-widest">Our Services</p>
           </div>
-          <p className="text-black/40 text-sm leading-relaxed max-w-xs md:text-right">
-            Tap any service to watch it come to life on TikTok. Every finish is crafted by hand.
+          <h2 className="text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold text-white leading-tight tracking-tight mb-5">
+            Everything you need.<br />
+            <span className="text-zinc-500">Nothing you don&apos;t.</span>
+          </h2>
+          <p className="text-zinc-400 text-lg leading-relaxed">
+            Premium nail care in-studio or at your doorstep. Click any service to book instantly.
           </p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-black/5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-800">
           {services.map((s) => (
-            <div
+            <a
               key={s.id}
-              className="relative bg-white group cursor-pointer overflow-hidden"
-              onMouseEnter={() => setHovered(s.id)}
-              onMouseLeave={() => setHovered(null)}
+              href="#book"
+              className="group bg-[#09090b] p-8 hover:bg-zinc-900 transition-colors block relative"
             >
-              {/* Image area */}
-              <div className={`relative h-64 bg-gradient-to-br ${s.gradient} overflow-hidden`}>
-
-                {/* Decorative circle */}
-                <div className="absolute -right-8 -top-8 w-40 h-40 rounded-full bg-white/20" />
-                <div className="absolute -left-4 -bottom-4 w-24 h-24 rounded-full bg-white/30" />
-
-                {/* Service name large watermark */}
-                <span className="absolute bottom-4 left-5 font-script text-5xl text-black/8 font-light select-none">
-                  {s.name}
+              {/* Tag */}
+              {s.tag && (
+                <span className={`inline-block text-xs font-bold uppercase tracking-widest px-2.5 py-1 mb-5 ${s.tag === "Most Popular" ? "bg-[#ff6c78]/10 text-[#ff6c78] border border-[#ff6c78]/20" : "bg-zinc-800 text-zinc-400 border border-zinc-700"}`}>
+                  {s.tag}
                 </span>
+              )}
+              {!s.tag && <div className="mb-5 h-7" />}
 
-                {/* Price pill */}
-                <div className="absolute top-5 right-5 bg-white/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-black">
-                  {s.price}
-                </div>
-
-                {/* Tag */}
-                {s.tag && (
-                  <div className={`absolute top-5 left-5 ${s.tagColor} text-white text-xs px-2.5 py-1 font-medium tracking-wide`}>
-                    {s.tag}
-                  </div>
-                )}
-
-                {/* TikTok hover overlay */}
-                <a
-                  href="https://www.tiktok.com/@nailsavvyng"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`absolute inset-0 bg-black/75 flex flex-col items-center justify-center gap-3 transition-opacity duration-300 ${hovered === s.id ? "opacity-100" : "opacity-0"}`}
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <div className="w-16 h-16 rounded-full bg-[#ff6c78] flex items-center justify-center">
-                    <HugeiconsIcon icon={PlayIcon} size={24} color="white" />
-                  </div>
-                  <div className="flex items-center gap-2 text-white">
-                    <HugeiconsIcon icon={TiktokIcon} size={14} color="white" />
-                    <span className="text-sm tracking-wide">Watch on TikTok</span>
-                  </div>
-                </a>
+              {/* Icon area */}
+              <div className="w-11 h-11 rounded-xl bg-zinc-800 group-hover:bg-[#ff6c78]/10 border border-zinc-700 group-hover:border-[#ff6c78]/30 flex items-center justify-center mb-5 transition-all">
+                {s.isHome
+                  ? <HugeiconsIcon icon={Home01Icon} size={20} color="currentColor" className="text-zinc-400 group-hover:text-[#ff6c78] transition-colors" />
+                  : <span className="text-zinc-500 group-hover:text-[#ff6c78] transition-colors text-lg">💅</span>
+                }
               </div>
 
-              {/* Info */}
-              <div className="p-6 border-b border-black/5">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <h3 className="font-script text-2xl text-black">{s.name}</h3>
-                  <span className="text-black/30 text-xs mt-1 whitespace-nowrap">{s.duration}</span>
-                </div>
-                <p className="text-black/50 text-sm leading-relaxed">{s.description}</p>
+              <h3 className="text-white font-bold text-xl mb-2">{s.name}</h3>
+              <p className="text-zinc-400 text-sm leading-relaxed mb-6">{s.description}</p>
 
-                <div className="mt-4 flex items-center gap-1 text-[#ff6c78] text-xs font-medium group-hover:gap-2 transition-all">
-                  <span>Book this service</span>
-                  <HugeiconsIcon icon={ArrowRight01Icon} size={14} color="#ff6c78" />
+              <div className="flex items-center justify-between">
+                <div>
+                  <div className="text-[#ff6c78] font-bold text-sm">{s.price}</div>
+                  <div className="text-zinc-600 text-xs mt-0.5">{s.duration}</div>
+                </div>
+                <div className="w-8 h-8 rounded-full border border-zinc-700 group-hover:border-[#ff6c78] group-hover:bg-[#ff6c78] flex items-center justify-center transition-all">
+                  <HugeiconsIcon icon={ArrowRight01Icon} size={14} color="currentColor" className="text-zinc-600 group-hover:text-white transition-colors" />
                 </div>
               </div>
-            </div>
+            </a>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-black/8 pt-10">
-          <p className="text-black/40 text-sm">Not sure what to get? Our team will help you choose.</p>
+        {/* Bottom CTA */}
+        <div className="mt-10 flex items-center justify-between flex-wrap gap-4">
+          <p className="text-zinc-500 text-sm">Not sure what to get? Our team will guide you.</p>
           <a
             href="#book"
-            className="inline-flex items-center gap-3 bg-black text-white px-8 py-4 text-sm tracking-widest uppercase font-medium hover:bg-[#ff6c78] transition-colors group"
+            className="inline-flex items-center gap-2 bg-[#ff6c78] text-white font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#e85d68] transition-colors shadow-lg shadow-[#ff6c78]/25"
           >
-            Book a Service
+            Book now — it&apos;s easy
             <HugeiconsIcon icon={ArrowRight01Icon} size={16} color="white" />
           </a>
         </div>
