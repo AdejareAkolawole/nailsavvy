@@ -30,10 +30,10 @@ export default function Footer() {
 
       {/* CTA strip */}
       <div className="border-b border-zinc-800">
-        <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-2 h-2 rounded-full bg-[#ff6c78] animate-pulse" />
-            <span className="text-zinc-300 text-sm font-medium">Get updates on new services, offers &amp; nail inspo on WhatsApp</span>
+            <span className="w-2 h-2 rounded-full bg-[#ff6c78] animate-pulse flex-shrink-0" />
+            <span className="text-zinc-300 text-sm font-medium">Get updates on new services &amp; nail inspo on WhatsApp</span>
           </div>
           <a
             href="https://wa.me/234XXXXXXXXXX?text=Hi%20NailSavvy!%20I%27d%20love%20to%20stay%20updated."
@@ -41,38 +41,40 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-[#ff6c78] text-white font-bold text-xs px-5 py-3 rounded-xl hover:bg-[#e85d68] transition-colors whitespace-nowrap shadow-lg shadow-[#ff6c78]/25"
           >
-            <HugeiconsIcon icon={WhatsappIcon} size={14} color="white" />
+            <HugeiconsIcon icon={WhatsappIcon} size={14} />
             Join on WhatsApp
           </a>
         </div>
       </div>
 
       {/* Main */}
-      <div className="max-w-6xl mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 sm:py-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-12">
 
           {/* Brand */}
-          <div className="lg:col-span-2">
-            <Logo variant="light" size={48} />
+          <div className="col-span-2">
+            <Logo variant="light" size={44} />
             <p className="text-zinc-500 text-sm mt-5 max-w-xs leading-relaxed">
               Nigeria&apos;s premium nail studio — expert manicures, pedicures, and nail art delivered in-studio and at your doorstep across Lagos.
             </p>
-            <div className="mt-8 space-y-3">
-              <a href="https://wa.me/234XXXXXXXXXX" className="flex items-center gap-3 text-zinc-500 hover:text-[#ff6c78] transition-colors text-sm group">
-                <HugeiconsIcon icon={WhatsappIcon} size={15} color="currentColor" />
+            <div className="mt-7 space-y-3">
+              <a href="https://wa.me/234XXXXXXXXXX" className="group flex items-center gap-3 text-zinc-500 hover:text-[#ff6c78] transition-colors text-sm">
+                <HugeiconsIcon icon={WhatsappIcon} size={15} />
                 WhatsApp Us
-                <HugeiconsIcon icon={ArrowRight01Icon} size={12} color="currentColor" className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="text-zinc-700 group-hover:text-[#ff6c78] transition-colors">
+                  <HugeiconsIcon icon={ArrowRight01Icon} size={12} />
+                </span>
               </a>
               <a href="mailto:hello@nailsavvyng.com" className="flex items-center gap-3 text-zinc-500 hover:text-[#ff6c78] transition-colors text-sm">
-                <HugeiconsIcon icon={Mail01Icon} size={15} color="currentColor" />
+                <HugeiconsIcon icon={Mail01Icon} size={15} />
                 hello@nailsavvyng.com
               </a>
               <div className="flex items-center gap-3 text-zinc-600 text-sm">
-                <HugeiconsIcon icon={MapPinIcon} size={15} color="currentColor" />
+                <HugeiconsIcon icon={MapPinIcon} size={15} />
                 Lagos, Nigeria
               </div>
             </div>
-            <div className="flex gap-2 mt-8">
+            <div className="flex gap-2 mt-7">
               {socials.map((s) => (
                 <a
                   key={s.label}
@@ -82,7 +84,7 @@ export default function Footer() {
                   aria-label={s.label}
                   className="w-9 h-9 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:border-[#ff6c78] hover:text-[#ff6c78] hover:bg-[#ff6c78]/10 transition-all"
                 >
-                  <HugeiconsIcon icon={s.icon} size={15} color="currentColor" />
+                  <HugeiconsIcon icon={s.icon} size={15} />
                 </a>
               ))}
             </div>
@@ -90,7 +92,7 @@ export default function Footer() {
 
           {Object.entries(links).map(([cat, items]) => (
             <div key={cat}>
-              <h4 className="text-white text-xs font-bold tracking-widest uppercase mb-6">{cat}</h4>
+              <h4 className="text-white text-xs font-bold tracking-widest uppercase mb-5">{cat}</h4>
               <ul className="space-y-3">
                 {items.map((item) => (
                   <li key={item}>
@@ -105,7 +107,7 @@ export default function Footer() {
 
       {/* Bottom */}
       <div className="border-t border-zinc-800">
-        <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row justify-between items-center gap-3">
           <p className="text-zinc-600 text-xs">© {new Date().getFullYear()} NailSavvy. All rights reserved.</p>
           <p className="text-zinc-700 text-xs">nailsavvyng.com</p>
         </div>

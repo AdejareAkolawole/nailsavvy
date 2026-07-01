@@ -22,6 +22,13 @@ const services = [
   "Home Service",
 ];
 
+const trust = [
+  { icon: WhatsappIcon, title: "WhatsApp Confirmation", desc: "Booking confirmed instantly — no waiting." },
+  { icon: Calendar01Icon, title: "Flexible Scheduling", desc: "Pick a date and time that works for you." },
+  { icon: Home01Icon, title: "In-Studio or Home", desc: "Your choice — we adapt to you." },
+  { icon: CheckmarkCircle01Icon, title: "7-Day Warranty", desc: "Every service backed by our nail guarantee." },
+];
+
 export default function BookingSection() {
   const [form, setForm] = useState({ name: "", phone: "", service: "", date: "", notes: "", homeService: false });
 
@@ -38,18 +45,17 @@ export default function BookingSection() {
   const inputClass = "w-full bg-zinc-900 border border-zinc-800 text-white placeholder-zinc-600 px-4 py-3.5 text-sm rounded-xl focus:outline-none focus:border-[#ff6c78] transition-colors";
 
   return (
-    <section id="book" className="bg-white py-28 px-6">
+    <section id="book" className="bg-white py-16 md:py-24 lg:py-28 px-4 sm:px-6">
       <div className="max-w-6xl mx-auto">
-
-        <div className="grid lg:grid-cols-2 gap-20 items-start">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
           {/* Left */}
-          <div>
+          <div className="lg:sticky lg:top-24">
             <div className="flex items-center gap-2 mb-4">
               <HugeiconsIcon icon={SparklesIcon} size={14} color="#ff6c78" />
               <p className="text-[#ff6c78] text-sm font-bold uppercase tracking-widest">Book an Appointment</p>
             </div>
-            <h2 className="text-[clamp(2.25rem,5vw,3.5rem)] font-extrabold text-[#09090b] leading-tight tracking-tight mb-5">
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#09090b] leading-tight tracking-tight mb-5">
               Ready for your<br />
               <span className="relative inline-block">
                 <span className="relative z-10">dream nails?</span>
@@ -58,21 +64,15 @@ export default function BookingSection() {
                 </svg>
               </span>
             </h2>
-            <p className="text-zinc-500 text-base leading-relaxed mb-12 max-w-xs">
+            <p className="text-zinc-500 text-base leading-relaxed mb-10 max-w-xs">
               Fill in the form and we&apos;ll confirm your booking on WhatsApp in minutes.
             </p>
 
-            {/* Trust signals */}
             <div className="space-y-5">
-              {[
-                { icon: WhatsappIcon, title: "WhatsApp Confirmation", desc: "Booking confirmed instantly — no waiting." },
-                { icon: Calendar01Icon, title: "Flexible Scheduling", desc: "Pick a date and time that works for you." },
-                { icon: Home01Icon, title: "In-Studio or Home", desc: "Your choice — we adapt to you." },
-                { icon: CheckmarkCircle01Icon, title: "7-Day Warranty", desc: "Every service backed by our nail guarantee." },
-              ].map((t) => (
+              {trust.map((t) => (
                 <div key={t.title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#fff0f1] border border-[#ff6c78]/10 flex items-center justify-center flex-shrink-0">
-                    <HugeiconsIcon icon={t.icon} size={18} color="#ff6c78" />
+                  <div className="w-10 h-10 rounded-xl bg-[#fff0f1] border border-[#ff6c78]/10 flex items-center justify-center flex-shrink-0 text-[#ff6c78]">
+                    <HugeiconsIcon icon={t.icon} size={18} />
                   </div>
                   <div>
                     <div className="text-[#09090b] font-semibold text-sm">{t.title}</div>
@@ -84,58 +84,62 @@ export default function BookingSection() {
           </div>
 
           {/* Right — form */}
-          <div className="bg-[#09090b] rounded-2xl p-8 lg:p-10 border border-zinc-800">
-            <h3 className="text-white font-bold text-xl mb-8">Your Details</h3>
+          <div className="bg-[#09090b] rounded-2xl p-6 sm:p-8 lg:p-10 border border-zinc-800">
+            <h3 className="text-white font-bold text-xl mb-6 sm:mb-8">Your Details</h3>
 
-            <div className="grid grid-cols-2 gap-4 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
               <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <HugeiconsIcon icon={UserCheck01Icon} size={15} color="#52525b" />
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
+                  <HugeiconsIcon icon={UserCheck01Icon} size={15} />
                 </div>
                 <input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} className={`${inputClass} pl-11`} />
               </div>
               <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                  <HugeiconsIcon icon={Call02Icon} size={15} color="#52525b" />
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
+                  <HugeiconsIcon icon={Call02Icon} size={15} />
                 </div>
                 <input name="phone" placeholder="WhatsApp No." value={form.phone} onChange={handleChange} className={`${inputClass} pl-11`} />
               </div>
             </div>
 
             <div className="relative mb-4">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                <HugeiconsIcon icon={SparklesIcon} size={15} color="#52525b" />
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
+                <HugeiconsIcon icon={SparklesIcon} size={15} />
               </div>
-              <select name="service" value={form.service} onChange={handleChange} className={`${inputClass} pl-11 appearance-none`}>
+              <select name="service" value={form.service} onChange={handleChange} className={`${inputClass} pl-11 appearance-none cursor-pointer`}>
                 <option value="" disabled className="bg-[#09090b]">Select a Service</option>
                 {services.map((s) => <option key={s} value={s} className="bg-[#09090b]">{s}</option>)}
               </select>
             </div>
 
             <div className="relative mb-4">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none">
-                <HugeiconsIcon icon={Calendar01Icon} size={15} color="#52525b" />
+              <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
+                <HugeiconsIcon icon={Calendar01Icon} size={15} />
               </div>
               <input type="date" name="date" value={form.date} onChange={handleChange} className={`${inputClass} pl-11`} />
             </div>
 
             <textarea
               name="notes"
-              placeholder="Special requests, nail inspo description, reference photos..."
+              placeholder="Special requests, nail inspo description, reference photo ideas..."
               value={form.notes}
               onChange={handleChange}
               rows={3}
               className={`${inputClass} resize-none mb-4`}
             />
 
-            <label className="flex items-center gap-3 cursor-pointer mb-8 group">
-              <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${form.homeService ? "bg-[#ff6c78] border-[#ff6c78]" : "border-zinc-700 group-hover:border-[#ff6c78]"}`}>
-                {form.homeService && <span className="text-white text-xs font-bold">✓</span>}
+            <label className="flex items-center gap-3 cursor-pointer mb-6 sm:mb-8 group">
+              <div className={`w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${form.homeService ? "bg-[#ff6c78] border-[#ff6c78]" : "border-zinc-700 group-hover:border-[#ff6c78]/50"}`}>
+                {form.homeService && (
+                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+                    <path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                )}
               </div>
               <input type="checkbox" name="homeService" checked={form.homeService} onChange={handleChange} className="sr-only" />
-              <div className="flex items-center gap-2">
-                <HugeiconsIcon icon={Home01Icon} size={15} color="#71717a" />
-                <span className="text-zinc-400 text-sm">I want home service</span>
+              <div className="flex items-center gap-2 text-zinc-400">
+                <HugeiconsIcon icon={Home01Icon} size={15} />
+                <span className="text-sm">I want home service (add zone fee)</span>
               </div>
             </label>
 
@@ -145,9 +149,9 @@ export default function BookingSection() {
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 w-full bg-[#ff6c78] text-white font-bold py-4 text-sm rounded-xl hover:bg-[#e85d68] transition-colors shadow-lg shadow-[#ff6c78]/30"
             >
-              <HugeiconsIcon icon={WhatsappIcon} size={20} color="white" />
+              <HugeiconsIcon icon={WhatsappIcon} size={20} />
               Confirm on WhatsApp
-              <HugeiconsIcon icon={ArrowRight01Icon} size={16} color="white" />
+              <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
             </a>
             <p className="text-zinc-600 text-xs text-center mt-4">Opens WhatsApp with your details pre-filled</p>
           </div>
