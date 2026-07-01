@@ -85,7 +85,7 @@ export default function ServicesSection() {
             <a
               key={s.id}
               href="#book"
-              className="group bg-[#09090b] p-8 hover:bg-zinc-900 transition-colors block relative"
+              className="group bg-[#09090b] p-8 hover:bg-zinc-900 transition-colors block relative min-w-0"
             >
               {/* Tag */}
               {s.tag && (

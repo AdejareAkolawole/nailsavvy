@@ -63,7 +63,7 @@ export default function HomeServiceSection() {
         {/* Steps */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-800 mb-20">
           {steps.map((s) => (
-            <div key={s.num} className="bg-[#09090b] p-8 hover:bg-zinc-900 transition-colors group">
+            <div key={s.num} className="bg-[#09090b] p-8 hover:bg-zinc-900 transition-colors group min-w-0">
               <div className="flex items-center justify-between mb-8">
                 <span className="text-4xl font-extrabold text-zinc-800 group-hover:text-zinc-700 transition-colors">{s.num}</span>
                 <div className="w-10 h-10 rounded-xl bg-zinc-800 group-hover:bg-[#ff6c78]/10 border border-zinc-700 group-hover:border-[#ff6c78]/30 flex items-center justify-center transition-all">
