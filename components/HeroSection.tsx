@@ -1,213 +1,193 @@
 "use client";
 
 import { HugeiconsIcon } from "@hugeicons/react";
-import {
-  ArrowRight01Icon,
-  WhatsappIcon,
-  SparklesIcon,
-  StarIcon,
-} from "@hugeicons/core-free-icons";
+import { ArrowRight01Icon, WhatsappIcon, MapPinIcon, StarIcon } from "@hugeicons/core-free-icons";
 
-const avatars = ["AO", "TK", "BM", "SF", "JI"];
+const ticker = ["Gel Manicure", "Acrylic Extensions", "Nail Art", "Home Service", "Classic Pedi", "Spa Manicure", "3D Nail Art", "Chrome Nails"];
 
-const serviceChips = [
-  { label: "Gel Manicure", color: "#ff6c78", from: "₦15,000" },
-  { label: "Acrylic Extensions", color: "#8b5cf6", from: "₦25,000" },
-  { label: "Nail Art", color: "#f59e0b", from: "₦5,000" },
-  { label: "Home Service", color: "#10b981", from: "₦0 extra" },
-];
-
-const nailColors = [
-  { bg: "#ff6c78", label: "Georgia Peach" },
-  { bg: "#c084fc", label: "Lavender Dream" },
-  { bg: "#fb7185", label: "Rose Bliss" },
-  { bg: "#fbbf24", label: "Golden Hour" },
-  { bg: "#34d399", label: "Mint Fresh" },
-  { bg: "#f9a8d4", label: "Baby Pink" },
-  { bg: "#a78bfa", label: "Violet" },
-  { bg: "#ff6c78", label: "Classic Red" },
-  { bg: "#6ee7b7", label: "Sage" },
-];
+const swatches = ["#ff6c78", "#c084fc", "#fb923c", "#34d399", "#f9a8d4", "#fbbf24", "#818cf8", "#f43f5e"];
 
 export default function HeroSection() {
   return (
-    <section className="bg-white min-h-screen flex items-center overflow-hidden relative pt-20">
+    <section className="relative min-h-screen overflow-hidden flex flex-col" style={{ background: "#fef8f5" }}>
 
-      {/* Warm cream blob background */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-40" style={{ background: "radial-gradient(circle, #fff0f1 0%, transparent 70%)" }} />
-        <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full opacity-30" style={{ background: "radial-gradient(circle, #fdd4d5 0%, transparent 70%)" }} />
+      {/* ── Top peach accent strip ── */}
+      <div className="absolute top-0 right-0 w-[45%] h-full pointer-events-none" style={{ background: "linear-gradient(135deg, #fff1f2 0%, #ffe4e6 50%, #fecdd3 100%)" }} />
+      <div className="absolute top-0 right-0 w-[45%] h-full pointer-events-none opacity-60" style={{ background: "radial-gradient(ellipse at 80% 20%, #ff6c7830 0%, transparent 60%)" }} />
+
+      {/* ── Vertical brand tag (desktop) ── */}
+      <div className="absolute right-[calc(45%-20px)] top-1/2 -translate-y-1/2 flex-col items-center gap-3 hidden lg:flex z-10">
+        <div className="w-px h-20 bg-gradient-to-b from-transparent to-zinc-300" />
+        <span className="text-[10px] font-bold tracking-[0.3em] text-zinc-400 uppercase" style={{ writingMode: "vertical-rl" }}>NailSavvy Studio</span>
+        <div className="w-px h-20 bg-gradient-to-t from-transparent to-zinc-300" />
       </div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-12 lg:py-0">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* ── Main content ── */}
+      <div className="flex-1 flex items-center relative z-10 pt-24 pb-16 px-4 sm:px-6">
+        <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1fr_420px] gap-8 lg:gap-12 items-center">
 
-          {/* LEFT — Text */}
+          {/* LEFT */}
           <div>
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-[#ff6c78]/10 text-[#ff6c78] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-[#ff6c78]/20 mb-8">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6c78] animate-pulse" />
-              Lagos #1 Nail Studio
+            {/* Location pill */}
+            <div className="inline-flex items-center gap-1.5 bg-white border border-zinc-200 shadow-sm text-zinc-600 text-xs font-semibold px-3 py-1.5 rounded-full mb-8">
+              <HugeiconsIcon icon={MapPinIcon} size={12} color="#ff6c78" />
+              Lagos · Home Service Available
             </div>
 
-            {/* Headline */}
-            <h1 className="text-[clamp(2.75rem,5.5vw,4.5rem)] font-extrabold text-[#09090b] leading-[1.06] tracking-tight mb-6">
-              Beautiful nails,<br />
-              <span className="relative inline-block">
+            {/* Display headline — stacked editorial */}
+            <div className="mb-8">
+              <p className="text-zinc-300 text-[clamp(1.1rem,2vw,1.4rem)] font-extrabold uppercase tracking-[0.15em] leading-none mb-1">Your nails,</p>
+              <h1 className="leading-none font-extrabold tracking-tight">
                 <span
-                  className="relative z-10"
-                  style={{ background: "linear-gradient(135deg, #ff6c78 0%, #f43f5e 50%, #c026d3 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+                  className="block text-[clamp(4rem,10vw,8rem)] leading-[0.95]"
+                  style={{ background: "linear-gradient(135deg, #ff6c78 0%, #f43f5e 60%, #be123c 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
                 >
-                  delivered.
+                  Perfect.
                 </span>
-                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none" preserveAspectRatio="none">
-                  <path d="M2 9C60 4 150 3 298 10" stroke="#ff6c78" strokeWidth="3" strokeLinecap="round" opacity="0.35" />
-                </svg>
-              </span>
-            </h1>
+              </h1>
+              <p className="text-[#09090b] text-[clamp(1rem,2vw,1.5rem)] font-extrabold uppercase tracking-[0.12em] leading-none mt-2">Always on point.</p>
+            </div>
 
-            <p className="text-zinc-500 text-lg leading-relaxed mb-8 max-w-md">
-              Expert gel, acrylics &amp; nail art — at our studio or your doorstep across Lagos. Book in seconds on WhatsApp.
+            <p className="text-zinc-500 text-base leading-relaxed mb-8 max-w-sm">
+              Gel, acrylics, nail art &amp; more — in our Lagos studio or delivered to your door. Booked in seconds via WhatsApp.
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-10">
+            <div className="flex flex-wrap gap-3 mb-10">
               <a
                 href="#book"
-                className="inline-flex items-center justify-center gap-2 text-white font-bold text-sm px-7 py-4 rounded-xl hover:scale-105 transition-transform"
-                style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)", boxShadow: "0 6px 28px #ff6c7840" }}
+                className="inline-flex items-center gap-2 text-white font-bold text-sm px-6 py-3.5 rounded-2xl transition-transform hover:scale-[1.03]"
+                style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)", boxShadow: "0 8px 24px #ff6c7838" }}
               >
                 Book Appointment
-                <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
+                <HugeiconsIcon icon={ArrowRight01Icon} size={15} />
               </a>
               <a
                 href="https://wa.me/234XXXXXXXXXX"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 font-bold text-sm px-7 py-4 rounded-xl border-2 border-zinc-200 text-[#09090b] hover:border-[#25d366] hover:text-[#25d366] transition-all"
+                className="inline-flex items-center gap-2 font-bold text-sm px-6 py-3.5 rounded-2xl border-2 text-[#09090b] transition-all hover:border-[#25d366] hover:text-[#25d366]"
+                style={{ borderColor: "#e5e7eb" }}
               >
-                <HugeiconsIcon icon={WhatsappIcon} size={16} />
-                Chat on WhatsApp
+                <HugeiconsIcon icon={WhatsappIcon} size={15} />
+                WhatsApp Us
               </a>
             </div>
 
-            {/* Social proof */}
-            <div className="flex flex-wrap items-center gap-6">
+            {/* Nail shade strip */}
+            <div>
+              <p className="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-3">200+ shades in stock</p>
+              <div className="flex gap-2 flex-wrap">
+                {swatches.map((c, i) => (
+                  <div
+                    key={i}
+                    className="w-8 h-8 rounded-full border-2 border-white shadow-md hover:scale-125 transition-transform cursor-pointer"
+                    style={{ background: c }}
+                  />
+                ))}
+                <div className="w-8 h-8 rounded-full bg-zinc-100 border-2 border-white shadow-md flex items-center justify-center text-zinc-500 text-[10px] font-bold">
+                  +192
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT — Booking card */}
+          <div className="flex flex-col gap-4">
+
+            {/* Appointment card */}
+            <div className="bg-white rounded-3xl shadow-xl shadow-zinc-200/60 border border-zinc-100 overflow-hidden">
+              {/* Card header */}
+              <div className="px-6 py-5 flex items-center justify-between border-b border-zinc-100" style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)" }}>
+                <div>
+                  <p className="text-white/80 text-xs font-semibold uppercase tracking-widest">Next Available</p>
+                  <p className="text-white font-extrabold text-lg leading-tight">Today · Any time</p>
+                </div>
+                <div className="flex items-center gap-1 bg-white/20 rounded-full px-3 py-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                  <span className="text-white text-xs font-bold">Open</span>
+                </div>
+              </div>
+
+              {/* Services listed */}
+              <div className="px-6 py-5 space-y-3">
+                {[
+                  { name: "Gel Manicure", price: "₦15,000", dur: "1h 30m", color: "#ff6c78" },
+                  { name: "Acrylic Extensions", price: "₦25,000", dur: "2h", color: "#8b5cf6" },
+                  { name: "Nail Art", price: "₦5,000", dur: "30m", color: "#f59e0b" },
+                  { name: "Home Service", price: "+ Zone fee", dur: "At your door", color: "#10b981" },
+                ].map((s) => (
+                  <div key={s.name} className="flex items-center gap-3 group cursor-pointer">
+                    <div className="w-2.5 h-2.5 rounded-full flex-shrink-0" style={{ background: s.color }} />
+                    <div className="flex-1 min-w-0">
+                      <span className="text-[#09090b] font-semibold text-sm">{s.name}</span>
+                      <span className="text-zinc-400 text-xs ml-2">{s.dur}</span>
+                    </div>
+                    <span className="font-bold text-sm flex-shrink-0" style={{ color: s.color }}>{s.price}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Book button */}
+              <div className="px-6 pb-6">
+                <a
+                  href="#book"
+                  className="flex items-center justify-center gap-2 w-full text-white font-bold text-sm py-3.5 rounded-2xl hover:scale-[1.02] transition-transform"
+                  style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)", boxShadow: "0 4px 16px #ff6c7828" }}
+                >
+                  Book via WhatsApp
+                  <HugeiconsIcon icon={WhatsappIcon} size={16} />
+                </a>
+              </div>
+            </div>
+
+            {/* Social proof pill */}
+            <div className="bg-white rounded-2xl border border-zinc-100 shadow-sm px-5 py-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="flex">
-                  {avatars.map((a) => (
+                  {["AO","TK","BM"].map((a) => (
                     <div
                       key={a}
-                      className="w-8 h-8 rounded-full border-2 border-white -ml-2 first:ml-0 flex items-center justify-center text-white text-[10px] font-bold"
+                      className="w-7 h-7 rounded-full border-2 border-white -ml-2 first:ml-0 flex items-center justify-center text-white text-[9px] font-bold"
                       style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)" }}
                     >
                       {a}
                     </div>
                   ))}
                 </div>
-                <div>
-                  <span className="text-[#09090b] font-bold text-sm">500+</span>
-                  <span className="text-zinc-400 text-sm"> happy clients</span>
+                <div className="text-zinc-500 text-xs">
+                  <span className="text-[#09090b] font-bold">500+</span> happy clients
                 </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <div className="flex gap-0.5">
-                  {[1,2,3,4,5].map(i => (
-                    <HugeiconsIcon key={i} icon={StarIcon} size={14} color="#f59e0b" />
-                  ))}
-                </div>
-                <span className="text-[#09090b] font-bold text-sm">4.9</span>
-                <span className="text-zinc-400 text-xs">/ 5</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-[#10b981]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
-                <span className="text-xs font-semibold">7-day warranty</span>
+              <div className="flex items-center gap-1 text-xs font-bold text-[#09090b]">
+                <HugeiconsIcon icon={StarIcon} size={14} color="#f59e0b" />
+                4.9
+                <span className="text-zinc-400 font-normal ml-0.5">rating</span>
               </div>
             </div>
+
           </div>
-
-          {/* RIGHT — Visual */}
-          <div className="relative lg:pl-8">
-            {/* Main nail color palette card */}
-            <div className="relative bg-[#09090b] rounded-3xl p-6 shadow-2xl shadow-zinc-900/20 overflow-hidden">
-
-              {/* Floating badge */}
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <p className="text-zinc-400 text-xs uppercase tracking-widest font-semibold">Current Palette</p>
-                  <p className="text-white font-bold text-lg">200+ Shades</p>
-                </div>
-                <div className="flex items-center gap-1.5 bg-[#ff6c78]/10 border border-[#ff6c78]/20 text-[#ff6c78] px-3 py-1.5 rounded-full text-xs font-bold">
-                  <HugeiconsIcon icon={SparklesIcon} size={12} />
-                  New In
-                </div>
-              </div>
-
-              {/* Color grid */}
-              <div className="grid grid-cols-3 gap-2.5 mb-6">
-                {nailColors.map((c, i) => (
-                  <div
-                    key={i}
-                    className="rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform"
-                    style={{ background: c.bg, height: i % 3 === 1 ? "88px" : "72px" }}
-                  >
-                    <div className="absolute inset-0 bg-black/10" />
-                    <div className="absolute bottom-2 left-2 right-2">
-                      <p className="text-white text-[9px] font-semibold truncate drop-shadow">{c.label}</p>
-                    </div>
-                    {i === 0 && (
-                      <div className="absolute top-2 right-2 w-4 h-4 rounded-full border-2 border-white bg-white/30" />
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Booking CTA inside card */}
-              <div className="bg-zinc-800/60 rounded-2xl p-4 flex items-center justify-between border border-zinc-700">
-                <div>
-                  <p className="text-zinc-400 text-xs font-medium">Next available</p>
-                  <p className="text-white font-bold text-sm">Today · from ₦8,000</p>
-                </div>
-                <a
-                  href="#book"
-                  className="flex items-center gap-2 text-white font-bold text-xs px-4 py-2.5 rounded-xl hover:scale-105 transition-transform"
-                  style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)" }}
-                >
-                  Book now
-                  <HugeiconsIcon icon={ArrowRight01Icon} size={12} />
-                </a>
-              </div>
-            </div>
-
-            {/* Floating service chips */}
-            <div className="absolute -left-4 top-8 flex flex-col gap-2 hidden lg:flex">
-              {serviceChips.map((chip) => (
-                <div
-                  key={chip.label}
-                  className="bg-white rounded-xl px-3 py-2 shadow-lg border border-zinc-100 flex items-center gap-2 whitespace-nowrap"
-                >
-                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: chip.color }} />
-                  <span className="text-[#09090b] text-xs font-semibold">{chip.label}</span>
-                  <span className="text-zinc-400 text-xs ml-1">{chip.from}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom floating WhatsApp widget */}
-            <div className="mt-4 bg-white rounded-2xl p-4 border border-zinc-100 shadow-lg flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, #25d366, #128c7e)" }}>
-                <HugeiconsIcon icon={WhatsappIcon} size={20} color="white" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-[#09090b] font-bold text-sm">Instant WhatsApp booking</p>
-                <p className="text-zinc-400 text-xs truncate">Confirm your appointment in minutes — no app needed</p>
-              </div>
-              <div className="w-2 h-2 rounded-full bg-[#25d366] flex-shrink-0 animate-pulse" />
-            </div>
-          </div>
-
         </div>
       </div>
+
+      {/* ── Scrolling service ticker ── */}
+      <div className="relative z-10 border-y border-zinc-200 bg-white overflow-hidden py-3.5">
+        <div className="flex items-center gap-0 animate-[marquee_20s_linear_infinite]" style={{ width: "max-content" }}>
+          {[...ticker, ...ticker].map((t, i) => (
+            <span key={i} className="inline-flex items-center gap-3 text-zinc-500 text-sm font-semibold px-6 whitespace-nowrap">
+              <span className="w-1 h-1 rounded-full bg-[#ff6c78] flex-shrink-0" />
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <style jsx>{`
+        @keyframes marquee {
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
+        }
+      `}</style>
     </section>
   );
 }
