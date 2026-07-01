@@ -27,10 +27,10 @@ const zones = [
 ];
 
 const perks = [
-  { text: "Instant WhatsApp confirmation after booking", color: "#10b981" },
+  { text: "Instant confirmation after booking", color: "#10b981" },
   { text: "50% deposit secures your appointment", color: "#ff6c78" },
   { text: "Technician arrives fully equipped at your door", color: "#8b5cf6" },
-  { text: "Nail photo shared on WhatsApp after service", color: "#f59e0b" },
+  { text: "Nail photo shared with you after service", color: "#f59e0b" },
   { text: "7-day warranty on all nail services", color: "#10b981" },
 ];
 
@@ -143,14 +143,14 @@ export default function HomeServiceSection() {
                 ))}
               </ul>
               <a
-                href="https://wa.me/234XXXXXXXXXX"
+                href="#signup"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 text-white font-bold text-sm px-6 py-4 rounded-xl w-full hover:scale-105 transition-transform"
                 style={{ background: "linear-gradient(135deg, #25d366, #128c7e)", boxShadow: "0 4px 20px #25d36630" }}
               >
                 <HugeiconsIcon icon={WhatsappIcon} size={18} />
-                Chat us on WhatsApp
+                Book Home Service
               </a>
             </div>
           </div>

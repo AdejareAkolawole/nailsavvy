@@ -49,7 +49,7 @@ export default function HeroSection() {
             </div>
 
             <p className="text-zinc-500 text-base leading-relaxed mb-8 max-w-sm">
-              Gel, acrylics, nail art &amp; more — in our Lagos studio or delivered to your door. Booked in seconds via WhatsApp.
+              Gel, acrylics, nail art &amp; more — in our Lagos studio or delivered to your door. Book online in minutes — studio or home delivery.
             </p>
 
             {/* CTAs */}
@@ -63,14 +63,14 @@ export default function HeroSection() {
                 <HugeiconsIcon icon={ArrowRight01Icon} size={15} />
               </a>
               <a
-                href="https://wa.me/234XXXXXXXXXX"
+                href="#signup"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-bold text-sm px-6 py-3.5 rounded-2xl border-2 text-[#09090b] transition-all hover:border-[#25d366] hover:text-[#25d366]"
                 style={{ borderColor: "#e5e7eb" }}
               >
                 <HugeiconsIcon icon={WhatsappIcon} size={15} />
-                WhatsApp Us
+                Get Early Access
               </a>
             </div>
 
@@ -135,7 +135,7 @@ export default function HeroSection() {
                   className="flex items-center justify-center gap-2 w-full text-white font-bold text-sm py-3.5 rounded-2xl hover:scale-[1.02] transition-transform"
                   style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)", boxShadow: "0 4px 16px #ff6c7828" }}
                 >
-                  Book via WhatsApp
+                  Book Appointment
                   <HugeiconsIcon icon={WhatsappIcon} size={16} />
                 </a>
               </div>

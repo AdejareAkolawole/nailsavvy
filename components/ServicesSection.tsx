@@ -76,7 +76,7 @@ const services = [
     tag: "New",
     tagColor: "bg-rose-500/10 text-rose-400 border border-rose-500/20",
     accentColor: "#f43f5e",
-    description: "All services delivered at your door. Instant booking, WhatsApp confirm.",
+    description: "All services delivered at your door. Book online in minutes, we come to you.",
   },
 ];
 
@@ -92,11 +92,11 @@ export default function ServicesSection() {
             <p className="text-[#ff6c78] text-sm font-bold uppercase tracking-widest">Our Services</p>
           </div>
           <h2 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
-            Everything you need.<br />
-            <span className="text-zinc-500">Nothing you don&apos;t.</span>
+            Nails that speak<br />
+            <span className="text-zinc-500">before you do.</span>
           </h2>
           <p className="text-zinc-400 text-lg leading-relaxed">
-            Premium nail care in-studio or at your doorstep. Click any service to book.
+            Six services, one standard — perfect. Book online, we handle the rest.
           </p>
         </div>
 

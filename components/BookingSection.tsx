@@ -3,165 +3,144 @@
 import { useState } from "react";
 import { HugeiconsIcon } from "@hugeicons/react";
 import {
-  WhatsappIcon,
-  Calendar01Icon,
-  UserCheck01Icon,
-  Call02Icon,
-  SparklesIcon,
-  Home01Icon,
   ArrowRight01Icon,
+  SparklesIcon,
+  UserCheck01Icon,
   CheckmarkCircle01Icon,
+  Crown02Icon,
+  Home01Icon,
+  StarIcon,
 } from "@hugeicons/core-free-icons";
 
-const services = [
-  "Gel Manicure",
-  "Acrylic Extensions",
-  "Nail Art",
-  "Classic Pedicure",
-  "Classic Manicure",
-  "Home Service",
-];
-
-const trust = [
-  { icon: WhatsappIcon, title: "WhatsApp Confirmation", desc: "Booking confirmed instantly — no waiting.", color: "#25d366" },
-  { icon: Calendar01Icon, title: "Flexible Scheduling", desc: "Pick a date and time that works for you.", color: "#8b5cf6" },
-  { icon: Home01Icon, title: "In-Studio or Home", desc: "Your choice — we adapt to you.", color: "#0ea5e9" },
-  { icon: CheckmarkCircle01Icon, title: "7-Day Warranty", desc: "Every service backed by our nail guarantee.", color: "#10b981" },
+const perks = [
+  { icon: SparklesIcon, text: "Book appointments 24/7 — no calls needed", color: "#ff6c78" },
+  { icon: UserCheck01Icon, text: "Choose your nail tech by ratings & specialty", color: "#8b5cf6" },
+  { icon: Home01Icon, text: "Schedule home service with live technician tracking", color: "#0ea5e9" },
+  { icon: Crown02Icon, text: "Earn loyalty points on every visit", color: "#f59e0b" },
+  { icon: CheckmarkCircle01Icon, text: "7-day warranty backed on every service", color: "#10b981" },
+  { icon: StarIcon, text: "Leave reviews and get personalised service history", color: "#f43f5e" },
 ];
 
 export default function BookingSection() {
-  const [form, setForm] = useState({ name: "", phone: "", service: "", date: "", notes: "", homeService: false });
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value, type } = e.target;
-    setForm((prev) => ({ ...prev, [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value }));
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    // TODO: POST to /api/waitlist when backend is ready
+    setSubmitted(true);
   };
-
-  const waLink = () => {
-    const msg = `Hi NailSavvy! I'd like to book:\n\n👤 ${form.name}\n📱 ${form.phone}\n💅 ${form.service}\n📅 ${form.date}\n🏠 Home service: ${form.homeService ? "Yes" : "No"}\n📝 ${form.notes || "No notes"}`;
-    return `https://wa.me/234XXXXXXXXXX?text=${encodeURIComponent(msg)}`;
-  };
-
-  const inputClass = "w-full bg-zinc-900 border border-zinc-800 text-white placeholder-zinc-600 px-4 py-3.5 text-sm rounded-xl focus:outline-none focus:border-[#ff6c78] transition-colors";
 
   return (
-    <section id="book" className="py-16 md:py-24 lg:py-28 px-4 sm:px-6" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fff7f8 100%)" }}>
-      <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+    <section id="signup" className="py-16 md:py-24 lg:py-28 px-4 sm:px-6 bg-[#09090b] relative overflow-hidden">
 
-          {/* Left */}
-          <div className="lg:sticky lg:top-24">
+      {/* Background glows */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full pointer-events-none opacity-30" style={{ background: "radial-gradient(ellipse, #ff6c78 0%, transparent 70%)" }} />
+      <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full pointer-events-none opacity-20" style={{ background: "radial-gradient(circle, #8b5cf6 0%, transparent 70%)" }} />
+
+      <div className="max-w-6xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left — perks */}
+          <div>
             <div className="flex items-center gap-2 mb-4">
               <HugeiconsIcon icon={SparklesIcon} size={14} color="#ff6c78" />
-              <p className="text-[#ff6c78] text-sm font-bold uppercase tracking-widest">Book an Appointment</p>
+              <p className="text-[#ff6c78] text-sm font-bold uppercase tracking-widest">The Platform</p>
             </div>
-            <h2 className="text-4xl sm:text-5xl font-extrabold text-[#09090b] leading-tight tracking-tight mb-5">
-              Ready for your<br />
-              <span className="relative inline-block">
-                <span className="relative z-10">dream nails?</span>
-                <svg className="absolute -bottom-1 left-0 w-full" viewBox="0 0 280 10" fill="none" preserveAspectRatio="none">
-                  <path d="M2 7C60 2 150 2 278 8" stroke="#ff6c78" strokeWidth="3" strokeLinecap="round" opacity="0.5" />
-                </svg>
-              </span>
+            <h2 className="text-4xl sm:text-5xl font-extrabold text-white leading-tight tracking-tight mb-5">
+              More than a studio.<br />
+              <span className="text-zinc-500">It&apos;s your nail OS.</span>
             </h2>
-            <p className="text-zinc-500 text-base leading-relaxed mb-10 max-w-xs">
-              Fill in the form and we&apos;ll confirm your booking on WhatsApp in minutes.
+            <p className="text-zinc-400 text-base leading-relaxed mb-10 max-w-sm">
+              NailSavvy is a full booking &amp; loyalty platform — built for clients who want total control over their nail experience.
             </p>
 
-            <div className="space-y-5">
-              {trust.map((t) => (
-                <div key={t.title} className="flex items-start gap-4">
+            <ul className="space-y-4">
+              {perks.map((p) => (
+                <li key={p.text} className="flex items-start gap-3">
                   <div
-                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: `${t.color}15`, border: `1px solid ${t.color}25`, color: t.color }}
+                    className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                    style={{ background: `${p.color}18`, color: p.color }}
                   >
-                    <HugeiconsIcon icon={t.icon} size={18} />
+                    <HugeiconsIcon icon={p.icon} size={15} />
                   </div>
-                  <div>
-                    <div className="text-[#09090b] font-semibold text-sm">{t.title}</div>
-                    <div className="text-zinc-400 text-xs mt-0.5">{t.desc}</div>
-                  </div>
-                </div>
+                  <span className="text-zinc-300 text-sm leading-relaxed">{p.text}</span>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          {/* Right — form */}
-          <div className="bg-[#09090b] rounded-2xl p-6 sm:p-8 lg:p-10 border border-zinc-800 relative overflow-hidden">
-            {/* Subtle gradient top accent */}
-            <div className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl" style={{ background: "linear-gradient(90deg, #ff6c78, #8b5cf6, #10b981)" }} />
-            <div className="absolute -right-16 -top-16 w-48 h-48 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, #ff6c7810 0%, transparent 70%)" }} />
+          {/* Right — signup card */}
+          <div>
+            <div className="bg-white rounded-3xl p-8 sm:p-10 relative overflow-hidden shadow-2xl shadow-black/30">
+              {/* Rainbow top bar */}
+              <div className="absolute top-0 left-0 right-0 h-1 rounded-t-3xl" style={{ background: "linear-gradient(90deg, #ff6c78, #8b5cf6, #0ea5e9, #10b981)" }} />
 
-            <h3 className="text-white font-bold text-xl mb-6 sm:mb-8 relative">Your Details</h3>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 relative">
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
-                  <HugeiconsIcon icon={UserCheck01Icon} size={15} />
+              {submitted ? (
+                <div className="flex flex-col items-center text-center py-10">
+                  <div className="w-16 h-16 rounded-full flex items-center justify-center mb-5" style={{ background: "linear-gradient(135deg, #10b981, #059669)" }}>
+                    <HugeiconsIcon icon={CheckmarkCircle01Icon} size={30} color="white" />
+                  </div>
+                  <h3 className="text-[#09090b] font-extrabold text-2xl mb-3">You&apos;re on the list!</h3>
+                  <p className="text-zinc-500 text-sm max-w-xs leading-relaxed">
+                    We&apos;ll send your access link to <strong className="text-[#09090b]">{email}</strong> as soon as we launch. Get ready.
+                  </p>
                 </div>
-                <input name="name" placeholder="Full Name" value={form.name} onChange={handleChange} className={`${inputClass} pl-11`} />
-              </div>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
-                  <HugeiconsIcon icon={Call02Icon} size={15} />
-                </div>
-                <input name="phone" placeholder="WhatsApp No." value={form.phone} onChange={handleChange} className={`${inputClass} pl-11`} />
-              </div>
+              ) : (
+                <>
+                  {/* Badge */}
+                  <div className="inline-flex items-center gap-2 bg-[#ff6c78]/10 text-[#ff6c78] text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border border-[#ff6c78]/20 mb-6">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#ff6c78] animate-pulse" />
+                    Early Access — Free
+                  </div>
+
+                  <h3 className="text-[#09090b] font-extrabold text-2xl sm:text-3xl mb-2 leading-tight">
+                    Be first through the door.
+                  </h3>
+                  <p className="text-zinc-500 text-sm leading-relaxed mb-8">
+                    Join the waitlist and get priority access when we launch — plus a free first-visit discount waiting for you.
+                  </p>
+
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <input
+                      type="email"
+                      required
+                      placeholder="Your email address"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      className="w-full border border-zinc-200 bg-zinc-50 text-[#09090b] placeholder-zinc-400 px-4 py-3.5 text-sm rounded-xl focus:outline-none focus:border-[#ff6c78] transition-colors"
+                    />
+                    <button
+                      type="submit"
+                      className="flex items-center justify-center gap-2 w-full text-white font-bold py-4 text-sm rounded-xl hover:scale-[1.02] transition-transform"
+                      style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)", boxShadow: "0 6px 24px #ff6c7830" }}
+                    >
+                      Get Early Access
+                      <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
+                    </button>
+                  </form>
+
+                  <div className="mt-6 pt-6 border-t border-zinc-100 flex items-center justify-between">
+                    <div className="flex">
+                      {["AO","TK","BM","SF"].map((a) => (
+                        <div
+                          key={a}
+                          className="w-7 h-7 rounded-full border-2 border-white -ml-2 first:ml-0 flex items-center justify-center text-white text-[9px] font-bold"
+                          style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)" }}
+                        >
+                          {a}
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-zinc-400 text-xs"><span className="text-[#09090b] font-bold">200+</span> already joined</p>
+                  </div>
+                </>
+              )}
             </div>
 
-            <div className="relative mb-4">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
-                <HugeiconsIcon icon={SparklesIcon} size={15} />
-              </div>
-              <select name="service" value={form.service} onChange={handleChange} className={`${inputClass} pl-11 appearance-none cursor-pointer`}>
-                <option value="" disabled className="bg-[#09090b]">Select a Service</option>
-                {services.map((s) => <option key={s} value={s} className="bg-[#09090b]">{s}</option>)}
-              </select>
-            </div>
-
-            <div className="relative mb-4">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
-                <HugeiconsIcon icon={Calendar01Icon} size={15} />
-              </div>
-              <input type="date" name="date" value={form.date} onChange={handleChange} className={`${inputClass} pl-11`} />
-            </div>
-
-            <textarea
-              name="notes"
-              placeholder="Special requests, nail inspo description, reference photo ideas..."
-              value={form.notes}
-              onChange={handleChange}
-              rows={3}
-              className={`${inputClass} resize-none mb-4`}
-            />
-
-            <label className="flex items-center gap-3 cursor-pointer mb-6 sm:mb-8 group">
-              <div className={`w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors ${form.homeService ? "bg-[#ff6c78] border-[#ff6c78]" : "border-zinc-700 group-hover:border-[#ff6c78]/50"}`}>
-                {form.homeService && (
-                  <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                    <path d="M1 4l3 3 5-6" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                )}
-              </div>
-              <input type="checkbox" name="homeService" checked={form.homeService} onChange={handleChange} className="sr-only" />
-              <div className="flex items-center gap-2 text-zinc-400">
-                <HugeiconsIcon icon={Home01Icon} size={15} />
-                <span className="text-sm">I want home service (add zone fee)</span>
-              </div>
-            </label>
-
-            <a
-              href={waLink()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 w-full text-white font-bold py-4 text-sm rounded-xl hover:scale-[1.02] transition-transform"
-              style={{ background: "linear-gradient(135deg, #25d366, #128c7e)", boxShadow: "0 4px 24px #25d36635" }}
-            >
-              <HugeiconsIcon icon={WhatsappIcon} size={20} />
-              Confirm on WhatsApp
-              <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
-            </a>
-            <p className="text-zinc-600 text-xs text-center mt-4">Opens WhatsApp with your details pre-filled</p>
+            {/* Sub note */}
+            <p className="text-zinc-600 text-xs text-center mt-4">No credit card required · Launching soon in Lagos</p>
           </div>
         </div>
       </div>

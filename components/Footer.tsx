@@ -33,17 +33,17 @@ export default function Footer() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 rounded-full bg-[#25d366] animate-pulse flex-shrink-0" />
-            <span className="text-zinc-300 text-sm font-medium">Get updates on new services &amp; nail inspo on WhatsApp</span>
+            <span className="text-zinc-300 text-sm font-medium">Be first to know when we launch — join the waitlist</span>
           </div>
           <a
-            href="https://wa.me/234XXXXXXXXXX?text=Hi%20NailSavvy!%20I%27d%20love%20to%20stay%20updated."
+            href="#signup"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-white font-bold text-xs px-5 py-3 rounded-xl hover:scale-105 transition-transform whitespace-nowrap"
             style={{ background: "linear-gradient(135deg, #25d366, #128c7e)", boxShadow: "0 4px 16px #25d36630" }}
           >
             <HugeiconsIcon icon={WhatsappIcon} size={14} />
-            Join on WhatsApp
+            Join Waitlist
           </a>
         </div>
       </div>
