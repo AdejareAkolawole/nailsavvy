@@ -1,62 +1,212 @@
 "use client";
 
+import { HugeiconsIcon } from "@hugeicons/react";
+import {
+  ArrowRight01Icon,
+  WhatsappIcon,
+  SparklesIcon,
+  StarIcon,
+} from "@hugeicons/core-free-icons";
+
+const avatars = ["AO", "TK", "BM", "SF", "JI"];
+
+const serviceChips = [
+  { label: "Gel Manicure", color: "#ff6c78", from: "₦15,000" },
+  { label: "Acrylic Extensions", color: "#8b5cf6", from: "₦25,000" },
+  { label: "Nail Art", color: "#f59e0b", from: "₦5,000" },
+  { label: "Home Service", color: "#10b981", from: "₦0 extra" },
+];
+
+const nailColors = [
+  { bg: "#ff6c78", label: "Georgia Peach" },
+  { bg: "#c084fc", label: "Lavender Dream" },
+  { bg: "#fb7185", label: "Rose Bliss" },
+  { bg: "#fbbf24", label: "Golden Hour" },
+  { bg: "#34d399", label: "Mint Fresh" },
+  { bg: "#f9a8d4", label: "Baby Pink" },
+  { bg: "#a78bfa", label: "Violet" },
+  { bg: "#ff6c78", label: "Classic Red" },
+  { bg: "#6ee7b7", label: "Sage" },
+];
+
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
-      {/* Peach gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-black via-black/90 to-[#ff6c78]/30 z-10" />
+    <section className="bg-white min-h-screen flex items-center overflow-hidden relative pt-20">
 
-      {/* Background pattern — repeating peach circles */}
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: `radial-gradient(circle at 20% 80%, #ff6c78 0%, transparent 50%),
-                          radial-gradient(circle at 80% 20%, #ff6c78 0%, transparent 50%)`,
-      }} />
-
-      {/* Content */}
-      <div className="relative z-20 text-center text-white px-6 max-w-4xl mx-auto">
-        <p className="text-[#ff6c78] text-sm tracking-[0.3em] uppercase mb-6 font-sans-brand">
-          Nigeria&apos;s Premier Nail Studio
-        </p>
-        <h1 className="font-script text-6xl md:text-8xl font-light leading-tight mb-6">
-          Nails That <br />
-          <span className="text-[#ff6c78] italic">Speak for You</span>
-        </h1>
-        <p className="text-white/70 text-lg md:text-xl font-light max-w-xl mx-auto mb-10 leading-relaxed">
-          Premium nail services — in studio or at your doorstep. Gel, acrylics, nail art, manicure &amp; pedicure done by savvy professionals.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#book"
-            className="bg-[#ff6c78] text-white px-8 py-4 text-sm tracking-widest uppercase font-medium hover:bg-[#e85d68] transition-colors"
-          >
-            Book Appointment
-          </a>
-          <a
-            href="#services"
-            className="border border-white/40 text-white px-8 py-4 text-sm tracking-widest uppercase font-medium hover:border-[#ff6c78] hover:text-[#ff6c78] transition-colors"
-          >
-            View Services
-          </a>
-        </div>
-
-        {/* WhatsApp CTA */}
-        <div className="mt-8">
-          <a
-            href="https://wa.me/234XXXXXXXXXX"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-[#ff6c78] transition-colors text-sm"
-          >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            Chat us on WhatsApp
-          </a>
-        </div>
+      {/* Warm cream blob background */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full opacity-40" style={{ background: "radial-gradient(circle, #fff0f1 0%, transparent 70%)" }} />
+        <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full opacity-30" style={{ background: "radial-gradient(circle, #fdd4d5 0%, transparent 70%)" }} />
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 text-white/40">
-        <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <div className="w-px h-10 bg-gradient-to-b from-white/40 to-transparent animate-pulse" />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 w-full py-12 lg:py-0">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* LEFT — Text */}
+          <div>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-[#ff6c78]/10 text-[#ff6c78] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full border border-[#ff6c78]/20 mb-8">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#ff6c78] animate-pulse" />
+              Lagos #1 Nail Studio
+            </div>
+
+            {/* Headline */}
+            <h1 className="text-[clamp(2.75rem,5.5vw,4.5rem)] font-extrabold text-[#09090b] leading-[1.06] tracking-tight mb-6">
+              Beautiful nails,<br />
+              <span className="relative inline-block">
+                <span
+                  className="relative z-10"
+                  style={{ background: "linear-gradient(135deg, #ff6c78 0%, #f43f5e 50%, #c026d3 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+                >
+                  delivered.
+                </span>
+                <svg className="absolute -bottom-2 left-0 w-full" viewBox="0 0 300 12" fill="none" preserveAspectRatio="none">
+                  <path d="M2 9C60 4 150 3 298 10" stroke="#ff6c78" strokeWidth="3" strokeLinecap="round" opacity="0.35" />
+                </svg>
+              </span>
+            </h1>
+
+            <p className="text-zinc-500 text-lg leading-relaxed mb-8 max-w-md">
+              Expert gel, acrylics &amp; nail art — at our studio or your doorstep across Lagos. Book in seconds on WhatsApp.
+            </p>
+
+            {/* CTAs */}
+            <div className="flex flex-col sm:flex-row gap-3 mb-10">
+              <a
+                href="#book"
+                className="inline-flex items-center justify-center gap-2 text-white font-bold text-sm px-7 py-4 rounded-xl hover:scale-105 transition-transform"
+                style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)", boxShadow: "0 6px 28px #ff6c7840" }}
+              >
+                Book Appointment
+                <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
+              </a>
+              <a
+                href="https://wa.me/234XXXXXXXXXX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 font-bold text-sm px-7 py-4 rounded-xl border-2 border-zinc-200 text-[#09090b] hover:border-[#25d366] hover:text-[#25d366] transition-all"
+              >
+                <HugeiconsIcon icon={WhatsappIcon} size={16} />
+                Chat on WhatsApp
+              </a>
+            </div>
+
+            {/* Social proof */}
+            <div className="flex flex-wrap items-center gap-6">
+              <div className="flex items-center gap-3">
+                <div className="flex">
+                  {avatars.map((a) => (
+                    <div
+                      key={a}
+                      className="w-8 h-8 rounded-full border-2 border-white -ml-2 first:ml-0 flex items-center justify-center text-white text-[10px] font-bold"
+                      style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)" }}
+                    >
+                      {a}
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <span className="text-[#09090b] font-bold text-sm">500+</span>
+                  <span className="text-zinc-400 text-sm"> happy clients</span>
+                </div>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="flex gap-0.5">
+                  {[1,2,3,4,5].map(i => (
+                    <HugeiconsIcon key={i} icon={StarIcon} size={14} color="#f59e0b" />
+                  ))}
+                </div>
+                <span className="text-[#09090b] font-bold text-sm">4.9</span>
+                <span className="text-zinc-400 text-xs">/ 5</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-[#10b981]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#10b981] animate-pulse" />
+                <span className="text-xs font-semibold">7-day warranty</span>
+              </div>
+            </div>
+          </div>
+
+          {/* RIGHT — Visual */}
+          <div className="relative lg:pl-8">
+            {/* Main nail color palette card */}
+            <div className="relative bg-[#09090b] rounded-3xl p-6 shadow-2xl shadow-zinc-900/20 overflow-hidden">
+
+              {/* Floating badge */}
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <p className="text-zinc-400 text-xs uppercase tracking-widest font-semibold">Current Palette</p>
+                  <p className="text-white font-bold text-lg">200+ Shades</p>
+                </div>
+                <div className="flex items-center gap-1.5 bg-[#ff6c78]/10 border border-[#ff6c78]/20 text-[#ff6c78] px-3 py-1.5 rounded-full text-xs font-bold">
+                  <HugeiconsIcon icon={SparklesIcon} size={12} />
+                  New In
+                </div>
+              </div>
+
+              {/* Color grid */}
+              <div className="grid grid-cols-3 gap-2.5 mb-6">
+                {nailColors.map((c, i) => (
+                  <div
+                    key={i}
+                    className="rounded-2xl relative overflow-hidden cursor-pointer hover:scale-105 transition-transform"
+                    style={{ background: c.bg, height: i % 3 === 1 ? "88px" : "72px" }}
+                  >
+                    <div className="absolute inset-0 bg-black/10" />
+                    <div className="absolute bottom-2 left-2 right-2">
+                      <p className="text-white text-[9px] font-semibold truncate drop-shadow">{c.label}</p>
+                    </div>
+                    {i === 0 && (
+                      <div className="absolute top-2 right-2 w-4 h-4 rounded-full border-2 border-white bg-white/30" />
+                    )}
+                  </div>
+                ))}
+              </div>
+
+              {/* Booking CTA inside card */}
+              <div className="bg-zinc-800/60 rounded-2xl p-4 flex items-center justify-between border border-zinc-700">
+                <div>
+                  <p className="text-zinc-400 text-xs font-medium">Next available</p>
+                  <p className="text-white font-bold text-sm">Today · from ₦8,000</p>
+                </div>
+                <a
+                  href="#book"
+                  className="flex items-center gap-2 text-white font-bold text-xs px-4 py-2.5 rounded-xl hover:scale-105 transition-transform"
+                  style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)" }}
+                >
+                  Book now
+                  <HugeiconsIcon icon={ArrowRight01Icon} size={12} />
+                </a>
+              </div>
+            </div>
+
+            {/* Floating service chips */}
+            <div className="absolute -left-4 top-8 flex flex-col gap-2 hidden lg:flex">
+              {serviceChips.map((chip) => (
+                <div
+                  key={chip.label}
+                  className="bg-white rounded-xl px-3 py-2 shadow-lg border border-zinc-100 flex items-center gap-2 whitespace-nowrap"
+                >
+                  <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ background: chip.color }} />
+                  <span className="text-[#09090b] text-xs font-semibold">{chip.label}</span>
+                  <span className="text-zinc-400 text-xs ml-1">{chip.from}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom floating WhatsApp widget */}
+            <div className="mt-4 bg-white rounded-2xl p-4 border border-zinc-100 shadow-lg flex items-center gap-4">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "linear-gradient(135deg, #25d366, #128c7e)" }}>
+                <HugeiconsIcon icon={WhatsappIcon} size={20} color="white" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-[#09090b] font-bold text-sm">Instant WhatsApp booking</p>
+                <p className="text-zinc-400 text-xs truncate">Confirm your appointment in minutes — no app needed</p>
+              </div>
+              <div className="w-2 h-2 rounded-full bg-[#25d366] flex-shrink-0 animate-pulse" />
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
