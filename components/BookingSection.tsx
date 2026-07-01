@@ -23,10 +23,10 @@ const services = [
 ];
 
 const trust = [
-  { icon: WhatsappIcon, title: "WhatsApp Confirmation", desc: "Booking confirmed instantly — no waiting." },
-  { icon: Calendar01Icon, title: "Flexible Scheduling", desc: "Pick a date and time that works for you." },
-  { icon: Home01Icon, title: "In-Studio or Home", desc: "Your choice — we adapt to you." },
-  { icon: CheckmarkCircle01Icon, title: "7-Day Warranty", desc: "Every service backed by our nail guarantee." },
+  { icon: WhatsappIcon, title: "WhatsApp Confirmation", desc: "Booking confirmed instantly — no waiting.", color: "#25d366" },
+  { icon: Calendar01Icon, title: "Flexible Scheduling", desc: "Pick a date and time that works for you.", color: "#8b5cf6" },
+  { icon: Home01Icon, title: "In-Studio or Home", desc: "Your choice — we adapt to you.", color: "#0ea5e9" },
+  { icon: CheckmarkCircle01Icon, title: "7-Day Warranty", desc: "Every service backed by our nail guarantee.", color: "#10b981" },
 ];
 
 export default function BookingSection() {
@@ -45,7 +45,7 @@ export default function BookingSection() {
   const inputClass = "w-full bg-zinc-900 border border-zinc-800 text-white placeholder-zinc-600 px-4 py-3.5 text-sm rounded-xl focus:outline-none focus:border-[#ff6c78] transition-colors";
 
   return (
-    <section id="book" className="bg-white py-16 md:py-24 lg:py-28 px-4 sm:px-6">
+    <section id="book" className="py-16 md:py-24 lg:py-28 px-4 sm:px-6" style={{ background: "linear-gradient(180deg, #ffffff 0%, #fff7f8 100%)" }}>
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
@@ -71,7 +71,10 @@ export default function BookingSection() {
             <div className="space-y-5">
               {trust.map((t) => (
                 <div key={t.title} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-[#fff0f1] border border-[#ff6c78]/10 flex items-center justify-center flex-shrink-0 text-[#ff6c78]">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: `${t.color}15`, border: `1px solid ${t.color}25`, color: t.color }}
+                  >
                     <HugeiconsIcon icon={t.icon} size={18} />
                   </div>
                   <div>
@@ -84,10 +87,14 @@ export default function BookingSection() {
           </div>
 
           {/* Right — form */}
-          <div className="bg-[#09090b] rounded-2xl p-6 sm:p-8 lg:p-10 border border-zinc-800">
-            <h3 className="text-white font-bold text-xl mb-6 sm:mb-8">Your Details</h3>
+          <div className="bg-[#09090b] rounded-2xl p-6 sm:p-8 lg:p-10 border border-zinc-800 relative overflow-hidden">
+            {/* Subtle gradient top accent */}
+            <div className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl" style={{ background: "linear-gradient(90deg, #ff6c78, #8b5cf6, #10b981)" }} />
+            <div className="absolute -right-16 -top-16 w-48 h-48 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, #ff6c7810 0%, transparent 70%)" }} />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+            <h3 className="text-white font-bold text-xl mb-6 sm:mb-8 relative">Your Details</h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4 relative">
               <div className="relative">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-600">
                   <HugeiconsIcon icon={UserCheck01Icon} size={15} />
@@ -147,7 +154,8 @@ export default function BookingSection() {
               href={waLink()}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-3 w-full bg-[#ff6c78] text-white font-bold py-4 text-sm rounded-xl hover:bg-[#e85d68] transition-colors shadow-lg shadow-[#ff6c78]/30"
+              className="flex items-center justify-center gap-3 w-full text-white font-bold py-4 text-sm rounded-xl hover:scale-[1.02] transition-transform"
+              style={{ background: "linear-gradient(135deg, #25d366, #128c7e)", boxShadow: "0 4px 24px #25d36635" }}
             >
               <HugeiconsIcon icon={WhatsappIcon} size={20} />
               Confirm on WhatsApp

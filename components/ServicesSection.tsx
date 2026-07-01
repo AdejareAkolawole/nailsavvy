@@ -19,7 +19,8 @@ const services = [
     price: "From ₦15,000",
     duration: "1h 30min",
     tag: "Most Popular",
-    tagStyle: "bg-[#ff6c78]/10 text-[#ff6c78] border border-[#ff6c78]/20",
+    tagColor: "bg-[#ff6c78]/10 text-[#ff6c78] border border-[#ff6c78]/20",
+    accentColor: "#ff6c78",
     description: "Long-lasting gel polish, chip-free for up to 3 weeks. 200+ shades available.",
   },
   {
@@ -29,7 +30,8 @@ const services = [
     price: "From ₦25,000",
     duration: "2h",
     tag: "Trending",
-    tagStyle: "bg-zinc-800 text-zinc-400 border border-zinc-700",
+    tagColor: "bg-violet-500/10 text-violet-400 border border-violet-500/20",
+    accentColor: "#8b5cf6",
     description: "Custom-length acrylics shaped and finished to absolute perfection.",
   },
   {
@@ -38,8 +40,9 @@ const services = [
     name: "Nail Art",
     price: "From ₦5,000",
     duration: "30–60min",
-    tag: null,
-    tagStyle: "",
+    tag: "Creative",
+    tagColor: "bg-amber-500/10 text-amber-400 border border-amber-500/20",
+    accentColor: "#f59e0b",
     description: "Minimalist line work to full 3D statement nails — bespoke to you.",
   },
   {
@@ -48,8 +51,9 @@ const services = [
     name: "Classic Pedicure",
     price: "From ₦12,000",
     duration: "1h",
-    tag: null,
-    tagStyle: "",
+    tag: "Self-Care",
+    tagColor: "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20",
+    accentColor: "#10b981",
     description: "Full foot care — soak, scrub, exfoliation, massage, and polish.",
   },
   {
@@ -58,8 +62,9 @@ const services = [
     name: "Classic Manicure",
     price: "From ₦8,000",
     duration: "45min",
-    tag: null,
-    tagStyle: "",
+    tag: "Quick",
+    tagColor: "bg-sky-500/10 text-sky-400 border border-sky-500/20",
+    accentColor: "#0ea5e9",
     description: "Cuticle care, precise shaping, and a flawless polish finish.",
   },
   {
@@ -69,7 +74,8 @@ const services = [
     price: "Zone fee + service",
     duration: "We come to you",
     tag: "New",
-    tagStyle: "bg-zinc-800 text-zinc-400 border border-zinc-700",
+    tagColor: "bg-rose-500/10 text-rose-400 border border-rose-500/20",
+    accentColor: "#f43f5e",
     description: "All services delivered at your door. Instant booking, WhatsApp confirm.",
   },
 ];
@@ -100,19 +106,30 @@ export default function ServicesSection() {
             <a
               key={s.id}
               href="#book"
-              className="group bg-[#09090b] p-6 sm:p-8 hover:bg-zinc-900 transition-colors block"
+              className="group bg-[#09090b] p-6 sm:p-8 hover:bg-zinc-900 transition-colors block relative overflow-hidden"
             >
+              {/* Colored top border on hover */}
+              <div
+                className="absolute top-0 left-0 right-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                style={{ background: `linear-gradient(90deg, ${s.accentColor}, transparent)` }}
+              />
+
               {/* Tag */}
               <div className="mb-5 h-6">
-                {s.tag && (
-                  <span className={`inline-block text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded ${s.tagStyle}`}>
-                    {s.tag}
-                  </span>
-                )}
+                <span className={`inline-block text-xs font-bold uppercase tracking-widest px-2.5 py-1 rounded-md ${s.tagColor}`}>
+                  {s.tag}
+                </span>
               </div>
 
               {/* Icon */}
-              <div className="w-11 h-11 rounded-xl bg-zinc-800 group-hover:bg-[#ff6c78]/10 border border-zinc-700 group-hover:border-[#ff6c78]/30 flex items-center justify-center mb-5 transition-all text-zinc-400 group-hover:text-[#ff6c78]">
+              <div
+                className="w-11 h-11 rounded-xl flex items-center justify-center mb-5 transition-all border"
+                style={{
+                  backgroundColor: `${s.accentColor}15`,
+                  borderColor: `${s.accentColor}30`,
+                  color: s.accentColor,
+                }}
+              >
                 <HugeiconsIcon icon={s.icon} size={20} />
               </div>
 
@@ -121,10 +138,17 @@ export default function ServicesSection() {
 
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="text-[#ff6c78] font-bold text-sm">{s.price}</div>
+                  <div className="font-bold text-sm" style={{ color: s.accentColor }}>{s.price}</div>
                   <div className="text-zinc-600 text-xs mt-0.5">{s.duration}</div>
                 </div>
-                <div className="w-8 h-8 rounded-full border border-zinc-700 group-hover:border-[#ff6c78] group-hover:bg-[#ff6c78] flex items-center justify-center transition-all text-zinc-500 group-hover:text-white">
+                <div
+                  className="w-8 h-8 rounded-full border flex items-center justify-center transition-all group-hover:scale-110"
+                  style={{
+                    borderColor: `${s.accentColor}40`,
+                    color: s.accentColor,
+                    backgroundColor: `${s.accentColor}10`,
+                  }}
+                >
                   <HugeiconsIcon icon={ArrowRight01Icon} size={14} />
                 </div>
               </div>

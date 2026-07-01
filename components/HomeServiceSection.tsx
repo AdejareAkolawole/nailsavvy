@@ -13,25 +13,25 @@ import {
 } from "@hugeicons/core-free-icons";
 
 const steps = [
-  { icon: Home01Icon, num: "01", title: "Book Online", desc: "Pick your service, preferred date, and drop your location." },
-  { icon: Call02Icon, num: "02", title: "We Call You", desc: "Admin is notified instantly and calls to confirm your slot." },
-  { icon: WhatsappIcon, num: "03", title: "Pay 50% Deposit", desc: "Send your receipt on WhatsApp to lock it in." },
-  { icon: Camera01Icon, num: "04", title: "Nail Reveal", desc: "Your finished nail photo is sent to you right after." },
+  { icon: Home01Icon, num: "01", title: "Book Online", desc: "Pick your service, preferred date, and drop your location.", color: "#ff6c78" },
+  { icon: Call02Icon, num: "02", title: "We Call You", desc: "Admin is notified instantly and calls to confirm your slot.", color: "#8b5cf6" },
+  { icon: WhatsappIcon, num: "03", title: "Pay 50% Deposit", desc: "Send your receipt on WhatsApp to lock it in.", color: "#10b981" },
+  { icon: Camera01Icon, num: "04", title: "Nail Reveal", desc: "Your finished nail photo is sent to you right after.", color: "#f59e0b" },
 ];
 
 const zones = [
-  { zone: "Zone 1", areas: "VI, Lekki Phase 1, Ikoyi", fee: "₦3,000" },
-  { zone: "Zone 2", areas: "Ajah, Sangotedo, Lekki Phase 2", fee: "₦5,000" },
-  { zone: "Zone 3", areas: "Yaba, Surulere, Maryland", fee: "₦5,000" },
-  { zone: "Zone 4", areas: "Ikeja, Ojota, Gbagada", fee: "₦7,000" },
+  { zone: "Zone 1", areas: "VI, Lekki Phase 1, Ikoyi", fee: "₦3,000", color: "#10b981" },
+  { zone: "Zone 2", areas: "Ajah, Sangotedo, Lekki Phase 2", fee: "₦5,000", color: "#f59e0b" },
+  { zone: "Zone 3", areas: "Yaba, Surulere, Maryland", fee: "₦5,000", color: "#f59e0b" },
+  { zone: "Zone 4", areas: "Ikeja, Ojota, Gbagada", fee: "₦7,000", color: "#ff6c78" },
 ];
 
 const perks = [
-  "Instant WhatsApp confirmation after booking",
-  "50% deposit secures your appointment",
-  "Technician arrives fully equipped at your door",
-  "Nail photo shared on WhatsApp after service",
-  "7-day warranty on all nail services",
+  { text: "Instant WhatsApp confirmation after booking", color: "#10b981" },
+  { text: "50% deposit secures your appointment", color: "#ff6c78" },
+  { text: "Technician arrives fully equipped at your door", color: "#8b5cf6" },
+  { text: "Nail photo shared on WhatsApp after service", color: "#f59e0b" },
+  { text: "7-day warranty on all nail services", color: "#10b981" },
 ];
 
 export default function HomeServiceSection() {
@@ -53,7 +53,8 @@ export default function HomeServiceSection() {
           </div>
           <a
             href="#book"
-            className="inline-flex items-center gap-2 bg-[#ff6c78] text-white font-bold text-sm px-6 py-3 rounded-xl hover:bg-[#e85d68] transition-colors shadow-lg shadow-[#ff6c78]/25 self-start sm:self-end whitespace-nowrap"
+            className="inline-flex items-center gap-2 text-white font-bold text-sm px-6 py-3 rounded-xl transition-all hover:scale-105 self-start sm:self-end whitespace-nowrap"
+            style={{ background: "linear-gradient(135deg, #ff6c78, #f43f5e)", boxShadow: "0 4px 20px #ff6c7835" }}
           >
             Book Home Service
             <HugeiconsIcon icon={ArrowRight01Icon} size={16} />
@@ -63,15 +64,25 @@ export default function HomeServiceSection() {
         {/* Steps grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-zinc-800 rounded-2xl overflow-hidden border border-zinc-800 mb-12 md:mb-20">
           {steps.map((s) => (
-            <div key={s.num} className="bg-[#09090b] p-6 sm:p-8 hover:bg-zinc-900 transition-colors group">
-              <div className="flex items-center justify-between mb-6 sm:mb-8">
-                <span className="text-4xl font-extrabold text-zinc-800 group-hover:text-zinc-700 transition-colors select-none">{s.num}</span>
-                <div className="w-10 h-10 rounded-xl bg-zinc-800 group-hover:bg-[#ff6c78]/10 border border-zinc-700 group-hover:border-[#ff6c78]/30 flex items-center justify-center transition-all text-zinc-400 group-hover:text-[#ff6c78]">
-                  <HugeiconsIcon icon={s.icon} size={18} />
+            <div key={s.num} className="bg-[#09090b] p-6 sm:p-8 hover:bg-zinc-900/80 transition-colors group relative overflow-hidden">
+              {/* Subtle color glow on hover */}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+                style={{ background: `radial-gradient(ellipse at top right, ${s.color}08 0%, transparent 70%)` }}
+              />
+              <div className="relative">
+                <div className="flex items-center justify-between mb-6 sm:mb-8">
+                  <span className="text-4xl font-extrabold transition-colors" style={{ color: `${s.color}30` }}>{s.num}</span>
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center transition-all"
+                    style={{ background: `${s.color}15`, border: `1px solid ${s.color}30`, color: s.color }}
+                  >
+                    <HugeiconsIcon icon={s.icon} size={18} />
+                  </div>
                 </div>
+                <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
+                <p className="text-zinc-400 text-sm leading-relaxed">{s.desc}</p>
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">{s.title}</h3>
-              <p className="text-zinc-400 text-sm leading-relaxed">{s.desc}</p>
             </div>
           ))}
         </div>
@@ -97,7 +108,7 @@ export default function HomeServiceSection() {
                 <div key={z.zone} className={`grid grid-cols-3 px-4 sm:px-6 py-4 items-center border-t border-zinc-800 ${i % 2 === 1 ? "bg-zinc-900/40" : ""}`}>
                   <span className="text-white font-semibold text-sm">{z.zone}</span>
                   <span className="text-zinc-400 text-xs pr-2">{z.areas}</span>
-                  <span className="text-right text-[#ff6c78] font-bold text-sm">{z.fee}</span>
+                  <span className="text-right font-bold text-sm" style={{ color: z.color }}>{z.fee}</span>
                 </div>
               ))}
             </div>
@@ -108,35 +119,40 @@ export default function HomeServiceSection() {
           </div>
 
           {/* Perks */}
-          <div className="bg-zinc-900/50 rounded-2xl border border-zinc-800 p-6 sm:p-8 lg:p-10">
-            <div className="flex items-center gap-2 mb-2">
-              <div className="text-[#ff6c78]">
-                <HugeiconsIcon icon={CrownIcon} size={16} />
+          <div className="rounded-2xl border border-zinc-800 p-6 sm:p-8 lg:p-10 overflow-hidden relative" style={{ background: "linear-gradient(135deg, #0f0f11 0%, #130a0f 100%)" }}>
+            <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, #ff6c7815 0%, transparent 70%)" }} />
+            <div className="absolute -left-6 -bottom-6 w-32 h-32 rounded-full pointer-events-none" style={{ background: "radial-gradient(circle, #8b5cf615 0%, transparent 70%)" }} />
+            <div className="relative">
+              <div className="flex items-center gap-2 mb-2">
+                <div className="text-[#ff6c78]">
+                  <HugeiconsIcon icon={CrownIcon} size={16} />
+                </div>
+                <span className="text-[#ff6c78] text-xs font-bold uppercase tracking-widest">What to Expect</span>
               </div>
-              <span className="text-[#ff6c78] text-xs font-bold uppercase tracking-widest">What to Expect</span>
+              <h3 className="text-white font-extrabold text-2xl mb-6 sm:mb-8">
+                Your booking, <span className="text-zinc-400">our promise</span>
+              </h3>
+              <ul className="space-y-4 mb-8 sm:mb-10">
+                {perks.map((p) => (
+                  <li key={p.text} className="flex items-start gap-3">
+                    <div className="flex-shrink-0 mt-0.5" style={{ color: p.color }}>
+                      <HugeiconsIcon icon={CheckmarkCircle01Icon} size={18} />
+                    </div>
+                    <span className="text-zinc-300 text-sm leading-relaxed">{p.text}</span>
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://wa.me/234XXXXXXXXXX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 text-white font-bold text-sm px-6 py-4 rounded-xl w-full hover:scale-105 transition-transform"
+                style={{ background: "linear-gradient(135deg, #25d366, #128c7e)", boxShadow: "0 4px 20px #25d36630" }}
+              >
+                <HugeiconsIcon icon={WhatsappIcon} size={18} />
+                Chat us on WhatsApp
+              </a>
             </div>
-            <h3 className="text-white font-extrabold text-2xl mb-6 sm:mb-8">
-              Your booking, <span className="text-zinc-400">our promise</span>
-            </h3>
-            <ul className="space-y-4 mb-8 sm:mb-10">
-              {perks.map((p) => (
-                <li key={p} className="flex items-start gap-3">
-                  <div className="text-[#ff6c78] flex-shrink-0 mt-0.5">
-                    <HugeiconsIcon icon={CheckmarkCircle01Icon} size={18} />
-                  </div>
-                  <span className="text-zinc-300 text-sm leading-relaxed">{p}</span>
-                </li>
-              ))}
-            </ul>
-            <a
-              href="https://wa.me/234XXXXXXXXXX"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 bg-[#ff6c78] text-white font-bold text-sm px-6 py-4 rounded-xl hover:bg-[#e85d68] transition-colors w-full shadow-lg shadow-[#ff6c78]/25"
-            >
-              <HugeiconsIcon icon={WhatsappIcon} size={18} />
-              Chat us on WhatsApp
-            </a>
           </div>
         </div>
       </div>
